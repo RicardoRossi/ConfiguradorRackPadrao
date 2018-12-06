@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfiguradorRackPadrao", "ConfiguradorRackPadrao\ConfiguradorRackPadrao.csproj", "{82B2C168-CF76-4D47-AD6B-82C65B22A9BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConexaoAccess", "ConexaoAccess\ConexaoAccess.csproj", "{942136C9-CE1F-45E6-B5F6-3A9D2FD6E277}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{82B2C168-CF76-4D47-AD6B-82C65B22A9BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82B2C168-CF76-4D47-AD6B-82C65B22A9BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82B2C168-CF76-4D47-AD6B-82C65B22A9BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{942136C9-CE1F-45E6-B5F6-3A9D2FD6E277}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{942136C9-CE1F-45E6-B5F6-3A9D2FD6E277}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{942136C9-CE1F-45E6-B5F6-3A9D2FD6E277}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{942136C9-CE1F-45E6-B5F6-3A9D2FD6E277}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

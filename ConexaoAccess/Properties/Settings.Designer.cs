@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConfiguradorRackPadrao.Properties {
+namespace ConexaoAccess.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -28,9 +28,9 @@ namespace ConfiguradorRackPadrao.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=\"C:\\ELETROFRIO\\ENGENHARIA SMR\\produ" +
             "tos finais eletrofrio\\mecânica\\Rack padrao\\CONFIGURADOR\\Configurador2016.accdb\"")]
-        public string Configurador2016ConnectionString {
+        public string connAccess {
             get {
-                return ((string)(this["Configurador2016ConnectionString"]));
+                return ((string)(this["connAccess"]));
             }
         }
     }
