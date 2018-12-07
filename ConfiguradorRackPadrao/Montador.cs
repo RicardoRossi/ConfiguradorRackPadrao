@@ -3,27 +3,24 @@ using System.Runtime.InteropServices;
 
 namespace ConfiguradorRackPadrao
 {
-    class Montador
+    public class Montador
     {
-        SldWorks.SldWorks swApp;
-        ModelDoc2 swModel;
-        AssemblyDoc swAssem;
-
-        public Montador()
+        public static void MontarKit(string codigo)
         {
-            swApp = (SldWorks.SldWorks)Marshal.GetActiveObject(@"SldWorks.Application");
-            swModel = swApp.ActiveDoc;
-            swAssem = (AssemblyDoc)swModel;
+            ReceberListaDeComponentesDokit(codigo);
         }
 
-
-
-        public void Montar()
+        static void ReceberListaDeComponentesDokit(string codigo)
         {
-            var caminho = @"C:\ELETROFRIO\ENGENHARIA SMR\NOVA ESTRUTURA\RACK 1\02_CAD\2048212.sldprt";
-            var cs = "cs_base_compressor";
+            // Teste abrir todos os arquivos da lista.
+            foreach (var item in ListaComponentes.MontarListaDeComponentesDoKit(codigo))
+            {
+                Arquivo.Abrir3D(item.item);             
+            }            
+        }
 
-            // Seleciona os componentes no top level
+        /*
+         // Seleciona os componentes no top level
             var componentes = swAssem.GetComponents(true);
 
             // Escolher o componente no top level e selecionar a feature by name
@@ -55,8 +52,7 @@ namespace ConfiguradorRackPadrao
             // o nome do sc virá do bd da tbl tbl_kit scm
             // cs_sero será uma variável
             // Part.Extension.SelectByID2("cs_zero@Master_part_rp-1@2300142", "COORDSYS", 0, -0, 0, False, 0, Nothing, 0)
-        }
-
-
+         
+         */
     }
 }
