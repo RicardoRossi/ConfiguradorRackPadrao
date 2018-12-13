@@ -8,10 +8,30 @@ using SwConst;
 namespace ConfiguradorRackPadrao
 {
     public class Arquivo
-    {       
+    {
+        static string[] arquivos;
+        static Dictionary<string,string> dicArquivos = new Dictionary<string, string>();
+
+        public Arquivo()
+        {
+            arquivos = Directory.GetFiles(@"C:\ELETROFRIO\ENGENHARIA SMR", ".", SearchOption.AllDirectories);
+            // Adiciona os arquivos num dicionário chave valor.
+            foreach (var arquivo in arquivos)
+            {
+                try
+                {
+                    dicArquivos.Add(Path.GetFullPath(arquivo).ToUpper(), Path.GetFileNameWithoutExtension(arquivo).ToUpper());
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
         public static void Abrir3D(string codigo)
         {
-            var tipo = "3d";
+            const string tipo = "3d";
             var nome3d = Tipo(tipo, codigo); // nome3d é uma tupla que retorna dois parãmetros
             AbrirArquivoDoSolidWorks(nome3d.Item1, nome3d.Item2);
         }
@@ -19,7 +39,7 @@ namespace ConfiguradorRackPadrao
         //----------------------------------------------------------------------------------------------------------------------------------------------
         public static void Abrir2D(string codigo)
         {
-            var tipo = "2d";
+            const string tipo = "2d";
             var nome2d = Tipo(tipo, codigo); // nome2d é uma tupla que retorna dois parãmetros
             AbrirArquivoDoSolidWorks(nome2d.Item1, nome2d.Item2);
         }
@@ -71,35 +91,24 @@ namespace ConfiguradorRackPadrao
         private static List<string> GetCaminhoNomeExtensaoArquivo(string codigo)
         {
             var listaDeArquivos = new List<string>();
-            var arquivos = Directory.GetFiles(@"C:\ELETROFRIO\ENGENHARIA SMR", ".", SearchOption.AllDirectories);
-            var nome = new List<string>();
-            var dicArquivos = new Dictionary<string, string>();
-
-            // Adiciona os arquivos num dicionário chave valor.
-            foreach (var arquivo in arquivos)
-            {
-                try
-                {
-                    dicArquivos.Add(Path.GetFullPath(arquivo).ToUpper(), Path.GetFileNameWithoutExtension(arquivo).ToUpper());
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-            var subset = dicArquivos.Where(entry => entry.Value.Equals(codigo));
-            var total = subset.Count();
+            var subset =  dicArquivos.Where(entry => entry.Value.Equals(codigo));
 
             foreach (var item in subset)
             {
                 listaDeArquivos.Add(item.Key);
             }
+
             return listaDeArquivos;
         }
 
         //----------------------------------------------------------------------------------------------------------------------------------------------
         private static void AbrirArquivoDoSolidWorks(string nome, int tipo)
         {
+            if (nome ==string.Empty)
+            {
+                return;
+            }
+
             SldWorks.SldWorks swApp;
             ModelDoc2 swModel;
             swApp = SolidWorksSingleton.Get_swApp();
@@ -116,8 +125,24 @@ namespace ConfiguradorRackPadrao
             AssemblyDoc swAsm;
             Component2 swComp;
             swAsm = (AssemblyDoc)swModel;
-            swComp = swAsm.AddComponent4(nome, "", 0, 0, 0);
+            var r = new Random();
+            
+            swComp = swAsm.AddComponent4(nome, "",1, 0, 1);
             //swApp.ActivateDoc(nome);
+
+            //Feature swFeature = swComp.FeatureByName("cs_base1");
+            //swFeature.Select(true);
+            var nome_cs = "cs_" + Path.GetFileNameWithoutExtension(nome);
+            Feature swFeature = swComp.FeatureByName(nome_cs);
+
+            if (swFeature != null)
+            {
+                swFeature.Select(true); 
+            }
+
+            var nomeDoComponente = swComp.Name2;
+            //swComp.Select(true);
+            
         }
     }
 }

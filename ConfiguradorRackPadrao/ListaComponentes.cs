@@ -8,7 +8,7 @@ namespace ConfiguradorRackPadrao
 {
     public class ListaComponentes
     {
-        static List<Componente> ListarComponentesDokit(string codigo)
+        public static List<Componente> ListarComponentesDokit(string codigo)
         {
             var listaDeComponentesDoKit = new List<Componente>();
             // String de conexao definida na properties/settings do projeto.
@@ -22,21 +22,29 @@ namespace ConfiguradorRackPadrao
                     {
                         conn.Open();
                         var reader = command.ExecuteReader();
-                        Console.WriteLine("Itens da tabela itens do RP");
 
                         while (reader.Read())
                         {
                             if (reader.IsDBNull(2))
                             {
-                                var k = new Componente { item = reader.GetString(0), qt = reader.GetInt32(1), scm = "cs" }; // Se a coluna scm tiver valor nulo.
-                                listaDeComponentesDoKit.Add(k);
+                                // Cria componente com info do acess
+                                var componente = new Componente { item = reader.GetString(0), qt = reader.GetInt32(1), scm = "cs" }; // Se a coluna scm tiver valor nulo.
+                                listaDeComponentesDoKit.Add(componente);
                             }
                             else
                             {
-                                var k = new Componente { item = reader.GetString(0), qt = reader.GetInt32(1), scm = reader.GetString(2) };
-                                listaDeComponentesDoKit.Add(k);
+                                // Cria componente com info do acess
+                                var componente = new Componente { item = reader.GetString(0), qt = reader.GetInt32(1), scm = reader.GetString(2) };
+                                listaDeComponentesDoKit.Add(componente);
                             }                           
                         }
+                        // Retorna uma lista de objetos componentes
+
+                        foreach (var item in listaDeComponentesDoKit)
+                        {
+                            Console.WriteLine(item.item);
+                        }                       
+
                         return listaDeComponentesDoKit;
                     }
                     catch (OleDbException ex)
@@ -48,16 +56,16 @@ namespace ConfiguradorRackPadrao
             }
         }
 
-        public static List<Componente> MontarListaDeComponentesDoKit(string codigoKit)
-        {
-            var kit = new List<Componente>();
+        //public static List<Componente> MontarListaDeComponentesDoKit(string codigoKit)
+        //{
+        //    var kit = new List<Componente>();
 
-            kit = ListarComponentesDokit(codigoKit);
-            if (kit == null)
-            {
-                MessageBox.Show("Kit null, pesquisa falhou.");
-            }
-            return kit;
-        }
+        //    kit = ListarComponentesDokit(codigoKit);
+        //    if (kit == null)
+        //    {
+        //        MessageBox.Show("Kit null, pesquisa falhou.");
+        //    }
+        //    return kit;
+        //}
     }
 }
