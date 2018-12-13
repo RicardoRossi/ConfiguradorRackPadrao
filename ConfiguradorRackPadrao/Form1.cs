@@ -30,7 +30,8 @@ namespace ConfiguradorRackPadrao
             swApp.DocumentVisible(true, (int)swDocumentTypes_e.swDocASSEMBLY);
             swApp.DocumentVisible(true, (int)swDocumentTypes_e.swDocPART);
 
-            swModel.Rebuild((int)swRebuildOptions_e.swRebuildAll);
+            swExt = swModel.Extension;
+            swExt.Rebuild((int)swRebuildOptions_e.swUpdateMates);
         }
       
     }
