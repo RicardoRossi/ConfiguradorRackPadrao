@@ -10,7 +10,7 @@ namespace ConfiguradorRackPadrao
     public class Arquivo
     {
         static string[] arquivos;
-        static Dictionary<string,string> dicArquivos = new Dictionary<string, string>();
+        static readonly Dictionary<string, string> dicArquivos = new Dictionary<string, string>();
 
         public Arquivo()
         {
@@ -126,22 +126,20 @@ namespace ConfiguradorRackPadrao
             Component2 swComp;
             swAsm = (AssemblyDoc)swModel;
             var r = new Random();
-            
             swComp = swAsm.AddComponent4(nome, "",1, 0, 1);
             //swApp.ActivateDoc(nome);
 
             //Feature swFeature = swComp.FeatureByName("cs_base1");
             //swFeature.Select(true);
             var nome_cs = "cs_" + Path.GetFileNameWithoutExtension(nome);
-            Feature swFeature = swComp.FeatureByName(nome_cs);
+            var swFeature = swComp.FeatureByName(nome_cs);
 
             if (swFeature != null)
             {
-                swFeature.Select(true); 
+                swFeature.Select(true);
             }
 
             var nomeDoComponente = swComp.Name2; // Retorna nome com o número da instância
-            
         }
     }
 }

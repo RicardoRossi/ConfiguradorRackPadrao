@@ -34,16 +34,16 @@ namespace ConfiguradorRackPadrao
                             else
                             {
                                 // Cria componente com info do acess
-                                var componente = new Componente { item = reader.GetString(0), qt = reader.GetInt32(1), scm = reader.GetString(2) };
+                                var componente = new Componente { item = reader.GetString(0), qt = reader.GetInt32(1), scm = reader.GetString(2) }; // O indice segue a order do select acima.
                                 listaDeComponentesDoKit.Add(componente);
-                            }                           
+                            }
                         }
                         // Retorna uma lista de objetos componentes
 
                         foreach (var item in listaDeComponentesDoKit)
                         {
                             Console.WriteLine(item.item);
-                        }                       
+                        }
 
                         return listaDeComponentesDoKit;
                     }
@@ -55,17 +55,5 @@ namespace ConfiguradorRackPadrao
                 }
             }
         }
-
-        //public static List<Componente> MontarListaDeComponentesDoKit(string codigoKit)
-        //{
-        //    var kit = new List<Componente>();
-
-        //    kit = ListarComponentesDokit(codigoKit);
-        //    if (kit == null)
-        //    {
-        //        MessageBox.Show("Kit null, pesquisa falhou.");
-        //    }
-        //    return kit;
-        //}
     }
 }

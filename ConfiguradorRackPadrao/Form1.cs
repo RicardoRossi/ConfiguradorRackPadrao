@@ -33,6 +33,5 @@ namespace ConfiguradorRackPadrao
             swExt = swModel.Extension;
             swExt.Rebuild((int)swRebuildOptions_e.swUpdateMates);
         }
-      
     }
 }
