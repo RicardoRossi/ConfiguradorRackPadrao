@@ -126,7 +126,7 @@ namespace ConfiguradorRackPadrao
             Component2 swComp;
             swAsm = (AssemblyDoc)swModel;
             var r = new Random();
-            swComp = swAsm.AddComponent4(nome, "",1, 0, 1);
+            swComp = swAsm.AddComponent4(nome, "",0.5, 0, 0.5);
             //swApp.ActivateDoc(nome);
 
             //Feature swFeature = swComp.FeatureByName("cs_base1");
