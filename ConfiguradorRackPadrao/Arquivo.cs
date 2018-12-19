@@ -138,7 +138,6 @@ namespace ConfiguradorRackPadrao
             {
                 swFeature.Select(true);
             }
-
             var nomeDoComponente = swComp.Name2; // Retorna nome com o número da instância
         }
     }
