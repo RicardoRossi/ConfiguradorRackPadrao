@@ -25,7 +25,7 @@ namespace ConfiguradorRackPadrao
             swApp = SolidWorksSingleton.Get_swApp();
             swModel = swApp.ActiveDoc;
             var arquivo = new Arquivo();
-            int[] codigos = Enumerable.Range(4020048, 129).ToArray();
+            int[] codigos = Enumerable.Range(4020128, 2).ToArray();
 
             for (int i = 0; i < codigos.Length - 1; i++)
             {
